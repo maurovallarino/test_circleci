@@ -28,22 +28,6 @@ jobs:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_REGION
       - run: ls
-  #S3:
-    docker:
-      - image: 'cimg/python:3.6'
-    steps:
-      - checkout
-      - run: mkdir bucket && echo "lorem ipsum" > bucket/build_asset.txt
-      - aws-s3/sync:
-          arguments: |
-            --acl public-read \
-            --cache-control "max-age=86400"
-          from: bucket
-          to: 's3://my-s3-bucket-name/prefix'
-      - aws-s3/copy:
-          arguments: '--dryrun'
-          from: bucket/build_asset.txt
-          to: 's3://my-s3-bucket-name'
   
 workflows:
   build_and_test:
@@ -55,6 +39,6 @@ workflows:
   aws-cli:
     jobs:
       - aws-cli-example
-  #s3-example:
-    jobs:
-      - S3
+#  s3-example:
+#    jobs:
+#     - S3
