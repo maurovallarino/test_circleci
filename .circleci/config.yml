@@ -27,7 +27,7 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_REGION
-      - run: ls
+      - run: aws s3 cp app s3://thebestname4s3bucket4testing123654/ --recursive
   
 workflows:
   build_and_test:
@@ -39,6 +39,3 @@ workflows:
   aws-cli:
     jobs:
       - aws-cli-example
-#  s3-example:
-#    jobs:
-#     - S3
