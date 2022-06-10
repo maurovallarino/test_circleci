@@ -27,6 +27,22 @@ jobs:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_REGION
       - run: aws s3 cp app s3://thebestname4s3bucket4testing123654/ --recursive
+  deploy-cfn:
+    parameters:
+      stack-name:
+        description: mi-primer-stack
+        type: string
+    executor: aws-cli/default
+    steps:
+      - checkout
+      - aws-cli/setup
+      - run:
+          name: mi-primer-stack
+          command: |
+            aws cloudformation deploy \
+            --template cfn/mi-primer-stack.yml \
+            --stack << parameters.mi-primer-stack >> \
+            --parameter-overrides ImageTag=${CIRCLE_SHA1}
   
 workflows:
   build_and_test:
@@ -38,3 +54,7 @@ workflows:
   aws-cli:
     jobs:
       - aws-cli-example
+  deploy:
+    - … # build image and push to ECR with ${CIRCLE_SHA1} tag
+    - deploy-cfn:
+        stack-name: mi-primer-stack
