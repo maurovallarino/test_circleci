@@ -27,9 +27,10 @@ jobs:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_REGION
       - run: 
-        - aws cloudformation create-stack --stack-name circle-ci --template-body file:///home/neron/Projects/test_circleci/circle-ci.yml
+      - aws s3 cp /home/neron/Projects/test_circleci/.cloudformation s3://circle-ci-094552747742/ --recursive
+      #- aws cloudformation update-stack --stack-name circle-ci --template-url https://s3.amazonaws.com/
         #--parameters ParameterKey=Parm1,ParameterValue=test1 ParameterKey=Parm2,ParameterValue=test2
-        #- aws s3 cp app s3://circle-ci-094552747742/ --recursive
+        
         #- aws cloudformation deploy --template-file .cloudformation/circle-ci.yml --stack-name circle-ci
   
 workflows:
