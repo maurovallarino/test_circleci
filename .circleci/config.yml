@@ -15,7 +15,7 @@ jobs:
       - run:
           aws s3 cp app s3://circle-ci-094552747742/ --recursive
       - run:
-          aws cloudformation update-stack --stack-name circle-ci --template-body file://.cloudformation/config.yml
+          aws cloudformation update-stack --stack-name circle-ci --template-body file://.cloudformation/circle-ci.yml
 workflows:
   aws-cli:
     jobs:
