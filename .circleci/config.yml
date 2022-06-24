@@ -27,8 +27,8 @@ jobs:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_REGION
       - run: 
-        - aws s3 cp app s3://thebestname4s3bucket4testing123654/ --recursive
-        - aws cloudformation deploy --stack-name 	mi-primer-stack
+        #- aws s3 cp app s3://circle-ci-094552747742/ --recursive
+        - aws cloudformation deploy --template-file .cloudformation/circle-ci.yml --stack-name circle-ci
   
 workflows:
   build_and_test:
