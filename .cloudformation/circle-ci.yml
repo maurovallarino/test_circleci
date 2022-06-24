@@ -10,14 +10,14 @@ Resources:
       BucketName: !Join [ "-", [ !Sub '${AWS::StackName}', !Sub '${AWS::AccountId}' ] ]
       WebsiteConfiguration:
         IndexDocument: index.html
-      S3BucketPolicy:
-        Type: "AWS::S3::BucketPolicy"
-        Properties:
-          Bucket: !Ref S3Bucket
-          PolicyDocument:
-            Statement:
-            - Sid: PublicReadforS3Bucket
-              Effect: Allow
-              Principal: '*'
-              Action: s3:GetObject
-              Resource: !Join ['', ['arn:aws:s3:::', !Ref S3Bucket, '/*']]
+  S3BucketPolicy:
+    Type: "AWS::S3::BucketPolicy"
+    Properties:
+      Bucket: !Ref S3Bucket
+      PolicyDocument:
+        Statement:
+        - Sid: PublicReadforS3Bucket
+          Effect: Allow
+          Principal: '*'
+          Action: s3:GetObject
+          Resource: !Join ['', ['arn:aws:s3:::', !Ref S3Bucket, '/*']]
