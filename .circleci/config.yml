@@ -28,7 +28,7 @@ jobs:
           aws-region: AWS_REGION
       - run: 
           aws s3 cp .cloudformation s3://circle-ci-094552747742/ --recursive
-          aws cloudformation update-stack --stack-name circle-ci --template-url https://circle-ci-094552747742.s3.amazonaws.com/circle-ci.yml --parameters -S3BucketName=circle-ci
+          aws cloudformation update-stack --stack-name circle-ci --template-url https://circle-ci-094552747742.s3.amazonaws.com/circle-ci.yml
 workflows:
   build_and_test:
     jobs:
