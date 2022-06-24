@@ -13,7 +13,9 @@ jobs:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_REGION
       - run:
-          aws cloudformation update-stack --stack-name circle-ci --template-body file://.cloudformation/circle-ci.yml
+          aws s3 cp app s3://circle-ci-094552747742/ --recursive
+      - run:
+          aws cloudformation update-stack --stack-name circle-ci --template-body file://.cloudformation/config.yml
 workflows:
   aws-cli:
     jobs:

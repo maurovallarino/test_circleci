@@ -8,3 +8,5 @@ Resources:
     Properties:
       AccessControl: PublicRead
       BucketName: !Join [ "-", [ !Sub '${AWS::StackName}', !Sub '${AWS::AccountId}' ] ]
+      WebsiteConfiguration:
+        IndexDocument: index.html
